@@ -1,6 +1,7 @@
 import cv2
 import os
 import numpy as np
+import numpy.random as np_rand
 import math
 import tqdm
 
@@ -9,10 +10,11 @@ from FactorySettings import FactorySettings
 from Change import ChangeType, Change
 
 class Scenario:
-    def __init__(self, sequence_length : int, changes : list, scene : Scene, settings : FactorySettings, image_size : tuple):
+    def __init__(self, sequence_length : int, changes : list, scene : Scene, settings : FactorySettings, image_size : tuple, std_dev : float = 0.):
         self.sequence_length = sequence_length
         self.scene = scene
         self.image_size = image_size
+        self.std_dev = std_dev
 
         # rectify
         self.parameters = settings.parameters
@@ -59,6 +61,7 @@ class Scenario:
             file.write('\n----- SCENARIO ----- \n')
             file.write('Sequence length: \n\t%s\n' % self.sequence_length)
             file.write('Image Size: \n\t(%s, %s)\n' % (self.image_size))
+            file.write('Standard Deviation: \n\t%s\n' % self.std_dev)
             file.write('Changes: \n')
             for change in self.scenario:
                 file.write('\t%s\n' % change.to_string())
@@ -97,6 +100,8 @@ class Scenario:
 
         # extrinsics
         extrinsics_dir = os.path.join(gt_dir, 'extrinsics.txt')
+        if os.path.exists(extrinsics_dir) and iteration == 0:
+            os.remove(extrinsics_dir)
         extrinsics_file = open(extrinsics_dir, 'a')
         angles = self.rotation_matrix_to_euler_angles(self.parameters['R'])
         extrinsics_file.write('%s\t%s\t%s\t%s\t%s\t%s\t%s\n' % ( iteration, 
@@ -231,6 +236,13 @@ class Scenario:
         # fish points
         left_fished = self.fish_points(left_dist, True)
         right_fished = self.fish_points(right_dist, False)
+
+        # add standard deviation
+        left_deviation = np_rand.normal(loc=0, scale=self.std_dev, size=left_fished.shape)
+        right_deviation = np_rand.normal(loc=0, scale=self.std_dev, size=right_fished.shape)
+
+        left_fished += left_deviation
+        right_fished += right_deviation
 
         return left_fished, right_fished, left_dist, right_dist, left_undist, right_undist
 
