@@ -1,3 +1,4 @@
 synth_data_sets/*
 *.pyc
 *.ipynb
+logs/*
