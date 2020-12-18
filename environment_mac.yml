@@ -2,7 +2,6 @@ name: SCS
 channels:
   - defaults
   - conda-forge
-  - http://conda.anaconda.org/gurobi
 dependencies:
   - appnope=0.1.0=py37hf985489_1002
   - argon2-cffi=20.1.0=py37h4b544eb_2

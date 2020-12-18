@@ -69,14 +69,19 @@ class Scene:
         return z_rot_mat.dot(y_rot_mat.dot(x_rot_mat))
 
 
-    def visualize(self):
+    def visualize(self, gt = None):
         fig = plt.figure()
         ax = plt.axes(projection='3d')
 
         pts = self.points.reshape((self.points.shape[0], 3))
 
         xdata, ydata, zdata = pts[:,0], pts[:,1], pts[:,2]
-        ax.scatter3D(xdata, ydata, zdata)
+        ax.scatter3D(xdata, ydata, zdata, marker='o')
+
+        if gt is not None:
+            xdata, ydata, zdata = gt[:,0], gt[:,1], gt[:,2]
+            ax.scatter3D(xdata, ydata, zdata, marker='^')
+
         ax.set_xlabel('X')
         ax.set_ylabel('Y')
         ax.set_zlabel('Z')

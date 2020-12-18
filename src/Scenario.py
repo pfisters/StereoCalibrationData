@@ -5,9 +5,9 @@ import numpy.random as np_rand
 import math
 import tqdm
 
-from Scene import SceneType, Scene
-from FactorySettings import FactorySettings
-from Change import ChangeType, Change
+from src.Scene import SceneType, Scene
+from src.FactorySettings import FactorySettings
+from src.Change import ChangeType, Change
 
 class Scenario:
     def __init__(self, sequence_length : int, changes : list, scene : Scene, settings : FactorySettings, image_size : tuple, std_dev : float = 0.):
@@ -69,7 +69,7 @@ class Scenario:
         file.close()
 
     def create_output_dir(self) -> str:
-        output_dir = 'synth_' + str(self.scene.scene_type.name)
+        output_dir = os.path.join('synth_data_sets', 'synth_' + str(self.scene.scene_type.name))
         for change in self.scenario:
             output_dir += '_' + str(change.iteration) + '-' + str(max(change.data))
         
