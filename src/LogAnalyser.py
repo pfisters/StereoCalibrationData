@@ -69,8 +69,8 @@ class LogAnalyser:
             rows = min(items, rows)
 
         if identifier is None:
-            rl = rl_extrinsics[:rows, :]
-            gt = gt_extrinsics[:rows, :]
+            rl = rl_extrinsics[:rows, 3:9]
+            gt = gt_extrinsics[:rows, 1:7]            
         if identifier is 'rms':
             rl = rl_extrinsics[:rows, 1].reshape(rows, 1)
             gt = np.zeros((rows, 1))
