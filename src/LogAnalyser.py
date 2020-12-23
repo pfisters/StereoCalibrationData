@@ -20,29 +20,44 @@ class LogAnalyser:
         return params
 
     def load(self, identifier : str):
-        gts = []
-        # logging.info('Loading parameters from %s' % self.gt_path)
-        for filename in os.listdir(self.gt_path):
-            if filename.startswith(identifier):
-                gt = {
-                    'it' : int(filename.split('_')[1]),
-                    'pt' : np.genfromtxt(os.path.join(self.gt_path, filename), delimiter = '\t', skip_header= 0)
-                }
-                replicas = min(int(self.params['BUFFER SIZE']) + 1, gt['it'] + 1) 
-                gt['pt'] = np.tile(gt['pt'], (replicas, 1))
-                gts.append(gt)
-        gts.sort(key = lambda gt: gt['it'])
-
         pts = []
+        gts = []
         # logging.info('Loading parameters from %s' % self.rl_path)
         for filename in os.listdir(self.rl_path):
             if filename.startswith(identifier):
+                iteration = int(filename.split('_')[1])
+                pt = np.genfromtxt(os.path.join(self.rl_path, filename), delimiter='\t', skip_header=0)
                 pts.append({
-                    'it' : int(filename.split('_')[1]),
-                    'pt' : np.genfromtxt(os.path.join(self.rl_path, filename), delimiter='\t', skip_header=0)  
+                    'it' : iteration,
+                    'pt' : pt
                 })
+                end_index = iteration
+                start_index = max(0, iteration - int(self.params['BUFFER SIZE']) + 1)
+                shape = pt.shape
+                gts.append({
+                    'it' : iteration,
+                    'pt' : self.load_gt(identifier, start_index, end_index, shape)
+                })
+
         pts.sort(key = lambda pt: pt['it'])
+        gts.sort(key = lambda gt: gt['it'])
+
         return gts, pts
+
+    def load_gt(self, identifier : str, start_idx : int, end_idx : int, shape : tuple):
+        gts = np.empty((0, shape[1]))
+        for index in range(start_idx, end_idx + 1):
+            found = False
+            for filename in os.listdir(self.gt_path):
+                if filename.startswith(identifier):
+                    iteration = int(filename.split('_')[1])
+                    if iteration is index:
+                        found = True
+                        gt = np.genfromtxt(os.path.join(self.gt_path, filename), delimiter='\t', skip_header=0)
+                        gts = np.concatenate((gts, gt), axis=0)
+            assert found
+        assert gts.shape == shape
+        return gts
     
     def load_extrinsics(self, identifier : str = None, items : int = None):
         ex = 'extrinsics.txt'
