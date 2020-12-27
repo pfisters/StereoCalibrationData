@@ -16,7 +16,7 @@ flags.DEFINE_float('ROT_Y', -4, 'cube: Ry')
 flags.DEFINE_float('ROT_Z', 10, 'cube: Rz')
 flags.DEFINE_float('MIN', 0, 'cube: point lower boundary')
 flags.DEFINE_float('MAX', 2000, 'cube: point upper boundary')
-flags.DEFINE_integer('POINTS', 500, 'Number of points in scene')
+flags.DEFINE_integer('POINTS', 50, 'Number of points in scene')
 
 
 def main(argv):
@@ -52,7 +52,7 @@ def main(argv):
     changes += [Change(ChangeType.rotation, 70, [0, 0, 3])]
 
     # create scneario
-    scenario = Scenario(100, changes, points, factory_settings, (752, 480), 2.)
+    scenario = Scenario(100, changes, points, factory_settings, (752, 480), 10.)
     scenario.generate_sequence()
 
 

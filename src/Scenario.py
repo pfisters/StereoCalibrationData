@@ -72,7 +72,8 @@ class Scenario:
         output_dir = os.path.join('synth_data_sets', 'synth_' + str(self.scene.scene_type.name))
         for change in self.scenario:
             output_dir += '_' + str(change.iteration) + '-' + str(max(change.data))
-        
+        output_dir += '_' + str(self.std_dev)
+
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
         return output_dir
