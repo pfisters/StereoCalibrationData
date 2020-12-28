@@ -98,15 +98,19 @@ class LogAnalyser:
         return gt, rl
 
 
-    def compare(self, gts : list, pts : list):
+    def compare(self, gts : list, pts : list, iterations : int = None):
         length = min(len(gts), len(pts))
-        errors = np.zeros((length, 1))
+        if iterations is not None:
+            length = min(length, iterations)
+        rows, dims = gts[0]['pt'].shape
+        errors_norm = np.zeros((length, 1))
+        errors = np.zeros((length, dims))
         for i in range(length):
             gt = gts[i]['pt']
             pt = pts[i]['pt']
-            # plot_points(pt, gt)
-            errors[i] = np.linalg.norm(np.subtract(gt, pt))
-        rms = np.mean(errors)
+            errors[i] = np.linalg.norm(np.subtract(gt, pt), axis=0)
+            errors_norm[i] = np.linalg.norm(np.subtract(gt, pt))
+        rms = np.mean(errors_norm)
         logging.info('RMS (mm): %s' % rms)
-        return errors
+        return errors_norm, errors
     
