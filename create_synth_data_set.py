@@ -44,12 +44,12 @@ def main(argv):
     logging.info('Create Scencario')
 
     changes = []
-    changes += [Change(ChangeType.translation, 20, [10, 0, 0])]
-    changes += [Change(ChangeType.translation, 30, [0, 10, 0])]
-    changes += [Change(ChangeType.translation, 40, [0 ,0, 10])]
-    changes += [Change(ChangeType.rotation, 50, [3, 0, 0])]
-    changes += [Change(ChangeType.rotation, 60, [0, 3, 0])]
-    changes += [Change(ChangeType.rotation, 70, [0, 0, 3])]
+    changes += [Change(ChangeType.translation, 30, [0, 0, 5])]
+    changes += [Change(ChangeType.translation, 50, [0, 0, 5])]
+    changes += [Change(ChangeType.translation, 70, [0 ,0, 5])]
+    # changes += [Change(ChangeType.rotation, 50, [3, 0, 0])]
+    # changes += [Change(ChangeType.rotation, 60, [0, 3, 0])]
+    # changes += [Change(ChangeType.rotation, 70, [0, 0, 3])]
 
     # create scneario
     scenario = Scenario(100, changes, points, factory_settings, (752, 480), 10.)

@@ -1,0 +1,27 @@
+----- SCENE ----- 
+Scene type:
+	cube
+Scene parameters: 
+	X	-500.0
+	Y	-500.0
+	Z	3000.0
+	SCALE	500.0
+	DISTANCE	3000.0
+	ROT_X	5.0
+	ROT_Y	-4.0
+	ROT_Z	10.0
+	MIN	0.0
+	MAX	2000.0
+	POINTS	50
+
+----- SCENARIO ----- 
+Sequence length: 
+	100
+Image Size: 
+	(752, 480)
+Standard Deviation: 
+	2.0
+Changes: 
+	30	translation	[5, 0, 0]
+	50	translation	[5, 0, 0]
+	70	translation	[5, 0, 0]
