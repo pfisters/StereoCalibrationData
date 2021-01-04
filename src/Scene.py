@@ -1,5 +1,6 @@
 import enum
 import numpy as np
+from absl import logging
 import numpy.random as np_rand
 import matplotlib.pyplot as plt
 import math
@@ -18,9 +19,12 @@ class Scene:
     @staticmethod
     def generate_grid(self):
         # create 3D-grid (äquidistant grid at z = 0)
-        grid_points = np.zeros((self.scene['X'] * self.scene['Y'], 3), 
-            dtype=float)
-        grid_points[:, :2] = np.mgrid[0:self.scene['X'], 0:self.scene['Y']].T.reshape(-1, 2)
+        x = int(self.scene['X'])
+        y = int(self.scene['Y'])
+        if x <= 0 or y <= 0:
+            logging.fatal('X and Y must be positive')
+        grid_points = np.zeros((x * y, 3), dtype=float)
+        grid_points[:, :2] = np.mgrid[0:x, 0:y].T.reshape(-1, 2)
         grid_points *= self.scene['SCALE']
         grid_points[:, 2] = self.scene['DISTANCE']
 

@@ -1,5 +1,6 @@
 import cv2
 import os
+from absl import logging
 import numpy as np
 import numpy.random as np_rand
 import math
@@ -8,6 +9,7 @@ import tqdm
 from src.Scene import SceneType, Scene
 from src.FactorySettings import FactorySettings
 from src.Change import ChangeType, Change
+from utils.plotting import scatter_plot_points
 
 class Scenario:
     def __init__(self, sequence_length : int, changes : list, scene : Scene, settings : FactorySettings, image_size : tuple, std_dev : float = 0.):

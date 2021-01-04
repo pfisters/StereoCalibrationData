@@ -6,8 +6,8 @@ from src.Scenario import Scenario
 from src.Change import Change, ChangeType
 
 FLAGS = flags.FLAGS
-flags.DEFINE_float('X', -500, 'cube: Tx')
-flags.DEFINE_float('Y', -500, 'cube: Ty')
+flags.DEFINE_float('X', -500, 'cube: Tx, grid: dim x')
+flags.DEFINE_float('Y', -500, 'cube: Ty, grid: dim y')
 flags.DEFINE_float('Z', 3000, 'cube: Tz')
 flags.DEFINE_float('SCALE', 500, 'cube: -')
 flags.DEFINE_float('DISTANCE', 3000, 'cube: -')
