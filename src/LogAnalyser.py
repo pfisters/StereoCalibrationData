@@ -16,6 +16,9 @@ class LogAnalyser:
         
     def read_parameters(self):
         params = {}
+        if not os.path.exists(self.param_path):
+            logging.fatal(self.param_path + ' does not exist. You might be operating on a field data set!')
+            
         for line in open(self.param_path, 'r').readlines():
             key, value = line.split('\t')
             params[key] = value.rstrip()
@@ -116,9 +119,9 @@ class LogAnalyser:
         return rl
 
 
-    def compare(self, gts : list, pts : list, iterations : int = None):
+    def compare(self, gts : list, pts : list, iterations : int = -1):
         length = min(len(gts), len(pts))
-        if iterations is not None:
+        if iterations > 0:
             length = min(length, iterations)
         rows, dims = gts[0]['pt'].shape
         errors_norm = np.zeros((length, 1))

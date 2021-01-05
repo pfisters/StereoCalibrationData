@@ -97,12 +97,12 @@ def plot_extrinsics(estimated : np.ndarray, ground_truth : np.ndarray = None, it
     t = np.arange(0, rows, 1)
     
     if ground_truth is not None:
-        axes[0,0].plot(t, ground_truth[:rows,0])
-        axes[1,0].plot(t, ground_truth[:rows,1])
-        axes[2,0].plot(t, ground_truth[:rows,2])
-        axes[0,1].plot(t, ground_truth[:rows,3])
-        axes[1,1].plot(t, ground_truth[:rows,4])
-        axes[2,1].plot(t, ground_truth[:rows,5])
+        axes[0,0].plot(t, ground_truth[:rows,0], 'r-')
+        axes[1,0].plot(t, ground_truth[:rows,1], 'r-')
+        axes[2,0].plot(t, ground_truth[:rows,2], 'r-')
+        axes[0,1].plot(t, ground_truth[:rows,3], 'r-')
+        axes[1,1].plot(t, ground_truth[:rows,4], 'r-')
+        axes[2,1].plot(t, ground_truth[:rows,5], 'r-')
 
     axes[0,0].plot(t, estimated[:rows,0], 'b-')
     axes[0,0].set_ylabel('Tx')

@@ -34,7 +34,7 @@ respectively
 ``` python
 python ./create_synth_data_set.py
 ```
-You can specify the flags either via command line or change them in the beginning of the file. Make sure to specify the factory settings file. The default file can be easily replaced by any factory settings file from a use case in `pfisters/StereoCameraParameterTracker`
+You can specify the flags either via command line or change them in the beginning of the file. Make sure to specify the factory settings file. The default file can be easily replaced by any factory settings file from a use case in `pfisters/StereoCameraParameterTracker`. The resulting data set is stored in the folder `.\synth_data_sets`.
 
 3. Generate logs with `pfisters/StereoCameraParameterTracker`. They will be generated in the use case directories in the folder `Logs`
 4. Analyse the logs 
@@ -42,5 +42,5 @@ You can specify the flags either via command line or change them in the beginnin
 python ./analyse_results.py
 ```
 
-You can specify the log file to analyse either in the command line or by changing the flags in the beginning of the file.
+You can specify the log folder to analyse either in the command line or by changing the flags in the beginning of the file.
 Make sure to specify, whether the log you analyse is a synthetic data set or a field data set. The class analyses a synthetic data set by default.
