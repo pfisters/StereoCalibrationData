@@ -4,7 +4,7 @@ from src.LogAnalyser import LogAnalyser
 from utils.plotting import line_plot_points, plot_extrinsics
 
 FLAGS = flags.FLAGS
-flags.DEFINE_string('log_directory', './logs/2x2_5z/std2/', 'log directory')
+flags.DEFINE_string('log_directory', './logs/4x4_optim/std10/', 'log directory')
 
 def main(argv):
 

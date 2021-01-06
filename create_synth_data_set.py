@@ -8,14 +8,14 @@ from src.Change import Change, ChangeType
 FLAGS = flags.FLAGS
 flags.DEFINE_float('X', -500, 'cube: Tx, grid: dim x')
 flags.DEFINE_float('Y', -500, 'cube: Ty, grid: dim y')
-flags.DEFINE_float('Z', 3000, 'cube: Tz')
+flags.DEFINE_float('Z', 1500, 'cube: Tz')
 flags.DEFINE_float('SCALE', 500, 'cube: -')
 flags.DEFINE_float('DISTANCE', 3000, 'cube: -')
 flags.DEFINE_float('ROT_X', 5, 'cube: Rx')
 flags.DEFINE_float('ROT_Y', -4, 'cube: Ry')
 flags.DEFINE_float('ROT_Z', 10, 'cube: Rz')
 flags.DEFINE_float('MIN', 0, 'cube: point lower boundary')
-flags.DEFINE_float('MAX', 2000, 'cube: point upper boundary')
+flags.DEFINE_float('MAX', 4000, 'cube: point upper boundary')
 flags.DEFINE_integer('POINTS', 50, 'Number of points in scene')
 
 
@@ -44,12 +44,12 @@ def main(argv):
     logging.info('Create Scencario')
 
     changes = []
-    changes += [Change(ChangeType.translation, 30, [0, 0, 5])]
-    changes += [Change(ChangeType.translation, 50, [0, 0, 5])]
-    changes += [Change(ChangeType.translation, 70, [0 ,0, 5])]
-    # changes += [Change(ChangeType.rotation, 50, [3, 0, 0])]
-    # changes += [Change(ChangeType.rotation, 60, [0, 3, 0])]
-    # changes += [Change(ChangeType.rotation, 70, [0, 0, 3])]
+    # changes += [Change(ChangeType.translation, 30, [0, 0, 0])]
+    # changes += [Change(ChangeType.translation, 30, [0, 10, 0])]
+    # changes += [Change(ChangeType.translation, 40, [0 , 0, 10])]
+    changes += [Change(ChangeType.rotation, 20, [2, 0, 0])]
+    changes += [Change(ChangeType.rotation, 40, [0, 2, 0])]
+    changes += [Change(ChangeType.rotation, 60, [0, 0, 2])]
 
     # create scneario
     scenario = Scenario(100, changes, points, factory_settings, (752, 480), 10.)
