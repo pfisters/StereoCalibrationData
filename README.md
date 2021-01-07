@@ -1,22 +1,20 @@
 # Stereo Calibration Data
-
-This repository is the result of my semester thesis @ ETH Zurich with Supercomputing Systems AG.
-
-It contains classes and functions to analyse the data produced by the repository `pfisters/StereoCameraParameterTracker`. 
-
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary>Table of Contents</summary>
   <ol>
-    <li><a href="#file-and-folder-structure">File and Folder Structure</a></li>
+    <li><a href="#about">About</a></li>
     <li><a href="#usage">Usage</a></li>
   </ol>
 </details>
 
 <!-- FILE AND FOLDER STRUCTURE -->
-## File and Folder Structure
+## About
+This repository is the result of my semester thesis @ ETH Zurich with Supercomputing Systems AG.
 
+It contains classes and functions to analyse the data produced by the repository `pfisters/StereoCameraParameterTracker`, as well as the possibility to create synthetic data sets for the latter in the form of cubes and planes in 3-dimensional space.
 
+For questions and inquriries, you reach me at pfisters@ethz.ch.
 
 <!-- USAGE EXAMPLES -->
 ## Usage
