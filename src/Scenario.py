@@ -251,11 +251,11 @@ class Scenario:
 
     def create_stereo_images(self, left_image_points, right_image_points):
         #  create empty images and draw points
-        left_img = np.zeros(self.image_size[::-1], np.int8)
+        left_img = (211, 211, 211) * np.ones(self.image_size[::-1] + (3, ), np.int8)
         right_img = left_img.copy()
 
-        color = (255, 255, 255)
-        radius = 2
+        color = tuple(reversed((0, 0, 255))) # blue
+        radius = 4
         thickness = -1
         for i in range(0, left_image_points.shape[0]):
             cv2.circle(left_img, (int(left_image_points[i, 0, 0]), int(left_image_points[i, 0, 1])), radius, color, thickness)

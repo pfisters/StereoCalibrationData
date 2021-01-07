@@ -17,6 +17,7 @@ flags.DEFINE_float('ROT_Z', 10, 'cube: Rz')
 flags.DEFINE_float('MIN', 0, 'cube: point lower boundary')
 flags.DEFINE_float('MAX', 4000, 'cube: point upper boundary')
 flags.DEFINE_integer('POINTS', 50, 'Number of points in scene')
+flags.DEFINE_float('NOISE', 10, 'Mean additional noise')
 
 
 def main(argv):
@@ -44,15 +45,15 @@ def main(argv):
     logging.info('Create Scencario')
 
     changes = []
-    # changes += [Change(ChangeType.translation, 30, [0, 0, 0])]
-    # changes += [Change(ChangeType.translation, 30, [0, 10, 0])]
-    # changes += [Change(ChangeType.translation, 40, [0 , 0, 10])]
-    changes += [Change(ChangeType.rotation, 20, [2, 0, 0])]
-    changes += [Change(ChangeType.rotation, 40, [0, 2, 0])]
-    changes += [Change(ChangeType.rotation, 60, [0, 0, 2])]
+    changes += [Change(ChangeType.translation, 20, [10, 0, 0])]
+    changes += [Change(ChangeType.translation, 30, [0, 10, 0])]
+    changes += [Change(ChangeType.translation, 40, [0 , 0, 10])]
+    changes += [Change(ChangeType.rotation, 50, [3, 0, 0])]
+    changes += [Change(ChangeType.rotation, 60, [0, 3, 0])]
+    changes += [Change(ChangeType.rotation, 70, [0, 0, 3])]
 
     # create scneario
-    scenario = Scenario(100, changes, points, factory_settings, (752, 480), 10.)
+    scenario = Scenario(100, changes, points, factory_settings, (752, 480), FLAGS.NOISE)
     scenario.generate_sequence()
 
 
